@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Landingpage.dart';
+import 'package:cs3midlogin/sign_in_page.dart';
+import 'package:cs3midlogin/sign_up_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,10 +19,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const Landingpage(),
-      // routes: {
-      //   '/signup': (context) => SignUpPage(),
-      //   '/signin': (context) => SignInPage(),
-      // },
+      initialRoute: '/',
+      routes: {
+        '/signup': (context) => const SignUpPage(),
+        '/signin': (context) => const SignInPage(),
+      },
     );
   }
 }

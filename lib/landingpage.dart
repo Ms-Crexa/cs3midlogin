@@ -1,74 +1,13 @@
 import 'package:flutter/material.dart';
 import 'Components/button.dart';
-import 'Components/card.dart';
 
-class Landingpage extends StatefulWidget {
+class Landingpage extends StatelessWidget {
   const Landingpage({super.key});
-
-  @override
-  _LandingpageState createState() => _LandingpageState();
-}
-
-class _LandingpageState extends State<Landingpage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _offsetSignUpAnimation;
-  late Animation<Offset> _offsetSignInAnimation;
-  bool isSignUpVisible = false;
-  bool isSignInVisible = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 500),
-      vsync: this,
-    );
-
-    // Initialize animations
-    _offsetSignUpAnimation = Tween<Offset>(
-      begin: const Offset(0.0, 1.0),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _offsetSignInAnimation = Tween<Offset>(
-      begin: const Offset(0.0, 1.0),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-  }
-
-  void toggleSignUpCard() {
-    setState(() {
-      isSignUpVisible = !isSignUpVisible;
-      isSignInVisible = false;
-    });
-    isSignUpVisible ? _controller.forward() : _controller.reverse();
-  }
-
-  void toggleSignInCard() {
-    setState(() {
-      isSignInVisible = !isSignInVisible;
-      isSignUpVisible = false;
-    });
-    isSignInVisible ? _controller.forward() : _controller.reverse();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenheight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.of(context).size.height;
     final isMobile = screenWidth < 600;
 
     return Scaffold(
@@ -76,7 +15,7 @@ class _LandingpageState extends State<Landingpage>
         children: [
           Container(
             width: screenWidth,
-            height: screenheight,
+            height: screenHeight,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/bgimage.jpg'),
@@ -85,13 +24,12 @@ class _LandingpageState extends State<Landingpage>
             ),
             child: Container(
               margin: EdgeInsets.only(
-                  left: isMobile ? 50 : 90,
-                  top: isMobile ? 100 : 60,
-                  right: isMobile ? 50 : 0),
+                left: isMobile ? 50 : 90,
+                top: isMobile ? 100 : 60,
+                right: isMobile ? 50 : 0,
+              ),
               child: Column(
-                crossAxisAlignment: isMobile
-                    ? CrossAxisAlignment.start
-                    : CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image.asset(
@@ -111,7 +49,7 @@ class _LandingpageState extends State<Landingpage>
                       ),
                     ),
                   ),
-                  SizedBox(height: isMobile ? screenheight * 0.35 : 90),
+                  SizedBox(height: isMobile ? screenHeight * 0.35 : 90),
                   Center(
                     child: Column(
                       children: [
@@ -121,7 +59,9 @@ class _LandingpageState extends State<Landingpage>
                           backgroundColor:
                               const Color.fromARGB(255, 252, 135, 32),
                           textColor: const Color.fromARGB(255, 255, 255, 255),
-                          onPressed: toggleSignUpCard,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/signup');
+                          },
                         ),
                         const SizedBox(height: 25),
                         customelvatedButton(
@@ -130,7 +70,9 @@ class _LandingpageState extends State<Landingpage>
                           backgroundColor:
                               const Color.fromARGB(255, 248, 248, 248),
                           textColor: const Color.fromARGB(255, 252, 135, 3),
-                          onPressed: toggleSignInCard,
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/signin');
+                          },
                         ),
                       ],
                     ),
@@ -139,20 +81,6 @@ class _LandingpageState extends State<Landingpage>
               ),
             ),
           ),
-          // Ternary rendering for cards
-          isSignUpVisible
-              ? card(
-                  isVisible: true,
-                  offsetAnimation: _offsetSignUpAnimation,
-                  content: signUpContent(),
-                )
-              : isSignInVisible
-                  ? card(
-                      isVisible: true,
-                      offsetAnimation: _offsetSignInAnimation,
-                      content: signInContent(),
-                    )
-                  : const SizedBox.shrink(), // Fallback if neither is visible
         ],
       ),
     );
