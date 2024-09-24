@@ -8,7 +8,7 @@ Widget customIconButton({
   Color? textColor, // Text color
   double? width, // Width of the button
 }) {
-  return Container(
+  return SizedBox(
     width: width,
     child: ElevatedButton(
       onPressed: onPressed,

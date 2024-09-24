@@ -24,42 +24,35 @@ class _CardSwitcherState extends State<CardSwitcher> {
     return Scaffold(
       body: Center(
         child: card(
-          isVisible: true,
-          offsetAnimation: AlwaysStoppedAnimation(10 as Offset),
           content: _isSignUp ? signUpContent() : signInContent(),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _toggleCard,
+        child: Icon(_isSignUp ? Icons.login : Icons.person_add),
       ),
     );
   }
 }
 
 Widget card({
-  required bool isVisible,
-  required Animation<Offset> offsetAnimation,
   required Widget content,
 }) {
-  if (!isVisible) return const SizedBox.shrink();
-
-  return SlideTransition(
-    position: offsetAnimation,
-    child: Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        width: double.infinity,
-        height: 540,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(50),
-            topRight: Radius.circular(50),
-          ),
+  return Align(
+    alignment: Alignment.bottomCenter,
+    child: Container(
+      width: double.infinity,
+      height: 540,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(50),
+          topRight: Radius.circular(50),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Container(
-            child: content,
-          ),
-        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: content,
       ),
     ),
   );
@@ -143,18 +136,18 @@ Widget signInContent() {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
               width: 230,
-              child: const Text(
+              child: Text(
                 'Welcome Back Alice',
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30),
               ),
             ),
-            const CircleAvatar(
+            CircleAvatar(
               radius: 30,
               backgroundImage: NetworkImage('https://example.com/avatar.jpg'),
             ),
