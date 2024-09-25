@@ -66,6 +66,8 @@ class SignUpPage extends StatelessWidget {
                                 const Color.fromARGB(255, 252, 135, 32),
                             textColor: const Color.fromARGB(255, 255, 255, 255),
                             onPressed: () {
+                              Navigator.pushNamed(context, '/Dashboard');
+
                               // Action for the sign-up button
                             },
                           ),
@@ -76,7 +78,9 @@ class SignUpPage extends StatelessWidget {
                             backgroundColor:
                                 const Color.fromARGB(255, 248, 248, 248),
                             textColor: const Color.fromARGB(255, 252, 135, 3),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Dashboard');
+                            },
                           ),
                         ],
                       ),
@@ -90,7 +94,7 @@ class SignUpPage extends StatelessWidget {
                 onTap: () {},
                 child: card(
                   isVisible: true,
-                  content: signUpContent(),
+                  content: signUpContent(context),
                 ),
               ),
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'button.dart';
+import 'package:cs3midlogin/Components/button.dart';
 
 class CardSwitcher extends StatefulWidget {
   const CardSwitcher({super.key});
@@ -24,7 +24,7 @@ class _CardSwitcherState extends State<CardSwitcher> {
       body: Center(
         child: card(
           isVisible: true,
-          content: _isSignUp ? signUpContent() : signInContent(),
+          content: _isSignUp ? signUpContent(context) : signInContent(context),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -61,128 +61,178 @@ Widget card({
   );
 }
 
-Widget signUpContent() {
-  return Container(
-    margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
-    child: Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              width: 120,
-              child: Text(
-                'New Account',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
+Widget signUpContent(BuildContext context) {
+  return SingleChildScrollView(
+    child: Container(
+      margin: const EdgeInsets.only(top: 15, left: 15, right: 15),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(
+                width: 120,
+                child: Text(
+                  'New Account',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
+                ),
               ),
-            ),
-            Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
+              Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
                         color: const Color.fromARGB(255, 252, 135, 32),
-                        width: 1),
+                        width: 1,
+                      ),
+                    ),
+                    padding: const EdgeInsets.all(15),
+                    child: const Icon(
+                      Icons.camera_alt_outlined,
+                      size: 30,
+                    ),
                   ),
-                  padding: EdgeInsets.all(15), // Adds space around the icon
-                  child: Icon(
-                    Icons.camera_alt_outlined,
-                    size: 30,
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Upload picture',
+                    style: TextStyle(color: Colors.black38),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Firstname',
+                  style: TextStyle(color: Colors.black, fontSize: 13)),
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.person_2_outlined),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 252, 135, 32)),
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Upload picture',
-                  style: TextStyle(color: Colors.black38),
-                )
-              ],
-            )
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Email',
-                style: TextStyle(color: Colors.black, fontSize: 18)),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                prefixIcon: Icon(LineAwesomeIcons.envelope),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 252, 135, 32)),
+              ),
+              const SizedBox(height: 10),
+              const Text('Lastname',
+                  style: TextStyle(color: Colors.black, fontSize: 13)),
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  prefixIcon: Icon(Icons.person_3_outlined),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 252, 135, 32)),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            const Text('Username',
-                style: TextStyle(color: Colors.black, fontSize: 18)),
-            TextFormField(
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                prefixIcon: Icon(LineAwesomeIcons.user),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 252, 135, 32)),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text('Password',
-                style: TextStyle(color: Colors.black, fontSize: 18)),
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(LineAwesomeIcons.key_solid),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 252, 135, 32)),
+              const SizedBox(height: 10),
+              const Text('Email',
+                  style: TextStyle(color: Colors.black, fontSize: 13)),
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  prefixIcon: Icon(LineAwesomeIcons.envelope),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 252, 135, 32)),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 45),
-            Center(
-              child: customelvatedButton(
-                text: 'Sign up',
-                width: 340,
-                backgroundColor: const Color.fromARGB(255, 252, 135, 32),
-                textColor: const Color.fromARGB(255, 255, 255, 255),
-                onPressed: () {},
+              const SizedBox(height: 10),
+              const Text('Username',
+                  style: TextStyle(color: Colors.black, fontSize: 13)),
+              TextFormField(
+                decoration: const InputDecoration(
+                  border: UnderlineInputBorder(),
+                  prefixIcon: Icon(LineAwesomeIcons.user),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 252, 135, 32)),
+                  ),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+              const SizedBox(height: 10),
+              const Text('Password',
+                  style: TextStyle(color: Colors.black, fontSize: 13)),
+              TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(LineAwesomeIcons.key_solid),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 252, 135, 32)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              const Text('Confirm Password',
+                  style: TextStyle(color: Colors.black, fontSize: 13)),
+              TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.key_off),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Color.fromARGB(255, 252, 135, 32)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 45),
+              Center(
+                child: customelvatedButton(
+                  text: 'Sign up',
+                  width: 340,
+                  backgroundColor: const Color.fromARGB(255, 252, 135, 32),
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/Dashboard');
+                  },
+                ),
+              ),
+              const SizedBox(height: 45),
+            ],
+          ),
+        ],
+      ),
     ),
   );
 }
 
-Widget signInContent() {
+Widget signInContent(BuildContext context) {
   return Container(
     margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Row(
+        Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(
+            const SizedBox(
               width: 230,
               child: Text(
                 'Welcome Back Alice',
@@ -191,8 +241,9 @@ Widget signInContent() {
             ),
             CircleAvatar(
               radius: 35,
-              backgroundImage: NetworkImage(
-                  'https://scontent.fmnl30-3.fna.fbcdn.net/v/t39.30808-6/399543211_3670547096562585_5563194013656782381_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEdJuMVGWxnZODq8rjbhEfw5KUyFed1F-LkpTIV53UX4nQNrTyVcy6UpNgdWtBsiPjHYjW5bZY95NRyVafEh7Ld&_nc_ohc=c6LVat6zUawQ7kNvgGQ3vxe&_nc_ht=scontent.fmnl30-3.fna&_nc_gid=ARf7D-7BFCuVXabktp1juGz&oh=00_AYDTRQp47pEZ2akm32i57R4ighyuISyvD2So28L18sOcsg&oe=66F837ED'),
+              backgroundImage: const NetworkImage(
+                'https://i.pinimg.com/550x/64/fb/7b/64fb7b55c1cf8437405f4b53f541d07a.jpg',
+              ),
             ),
           ],
         ),
@@ -211,6 +262,14 @@ Widget signInContent() {
             ),
           ),
         ),
+        const SizedBox(height: 10),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            'Forgot password',
+            style: TextStyle(color: const Color.fromARGB(255, 252, 135, 32)),
+          ),
+        ),
         const SizedBox(height: 45),
         Column(
           children: [
@@ -218,50 +277,14 @@ Widget signInContent() {
               text: 'Sign in',
               width: 340,
               backgroundColor: const Color.fromARGB(255, 252, 135, 32),
-              textColor: const Color.fromARGB(255, 255, 255, 255),
-              onPressed: () {},
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.pushNamed(context, '/Dashboard');
+              },
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text('or sign in with'),
-            const SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Image.network(
-                      'https://cdn-icons-png.freepik.com/256/16509/16509564.png?semt=ais_hybrid',
-                      height: 40,
-                      width: 40,
-                    )),
-                const SizedBox(
-                  width: 10,
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: Image.network(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQKrFhY-ljA-u7J5IMWeTv8zmpBx4PP9nQMw&s',
-                      height: 30,
-                      width: 30,
-                    )),
-                const SizedBox(
-                  width: 10,
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: Image.network(
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI-h-e2hgz8mwGfCt4gvj4IgMG_wAUolVM6w&s',
-                      height: 30,
-                      width: 40,
-                    )),
-              ],
-            )
           ],
         ),
+        const SizedBox(height: 45),
       ],
     ),
   );
