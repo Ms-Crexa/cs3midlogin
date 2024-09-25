@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Landingpage.dart';
 import 'package:cs3midlogin/sign_in_page.dart';
 import 'package:cs3midlogin/sign_up_page.dart';
+import 'package:cs3midlogin/dashboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/signup': (context) => const SignUpPage(),
         '/signin': (context) => const SignInPage(),
+        '/Dashboard': (context) => const Dashboard(),
       },
     );
   }

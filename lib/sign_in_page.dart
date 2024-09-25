@@ -74,7 +74,9 @@ class SignInPage extends StatelessWidget {
                             backgroundColor:
                                 const Color.fromARGB(255, 248, 248, 248),
                             textColor: const Color.fromARGB(255, 252, 135, 3),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/Dashboard');
+                            },
                           ),
                         ],
                       ),
@@ -88,7 +90,7 @@ class SignInPage extends StatelessWidget {
                 onTap: () {},
                 child: card(
                   isVisible: true,
-                  content: signInContent(),
+                  content: signInContent(context),
                 ),
               ),
             ),
