@@ -228,11 +228,11 @@ Widget signInContent(BuildContext context) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
+            SizedBox(
               width: 230,
               child: Text(
                 'Welcome Back Alice',
@@ -241,7 +241,7 @@ Widget signInContent(BuildContext context) {
             ),
             CircleAvatar(
               radius: 35,
-              backgroundImage: const NetworkImage(
+              backgroundImage: NetworkImage(
                 'https://i.pinimg.com/550x/64/fb/7b/64fb7b55c1cf8437405f4b53f541d07a.jpg',
               ),
             ),
@@ -263,11 +263,11 @@ Widget signInContent(BuildContext context) {
           ),
         ),
         const SizedBox(height: 10),
-        Align(
+        const Align(
           alignment: Alignment.centerRight,
           child: Text(
             'Forgot password',
-            style: TextStyle(color: const Color.fromARGB(255, 252, 135, 32)),
+            style: TextStyle(color: Color.fromARGB(255, 252, 135, 32)),
           ),
         ),
         const SizedBox(height: 45),
