@@ -3,8 +3,20 @@ class Products {
   String title;
   String image;
   String price;
+  String category;
+  String description;
+  String rate;
+  String count;
 
-  Products({this.id = "", this.image = "", this.title = "", this.price = ""});
+  Products(
+      {this.id = "",
+      this.image = "",
+      this.title = "",
+      this.price = "",
+      this.category = "",
+      this.rate = "",
+      this.count = "",
+      this.description = ""});
 
   @override
   String toString() {
